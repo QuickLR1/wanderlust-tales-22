@@ -18,7 +18,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center space-x-2 group">
             <Compass className="h-7 w-7 text-primary transition-transform group-hover:rotate-12" />
             <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-              Wanderlust
+              Isain
             </span>
           </Link>
 
