@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import DestinationCard from '@/components/DestinationCard';
+import Footer from '@/components/Footer';
+import ScrollProgress from '@/components/ScrollProgress';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, Filter } from 'lucide-react';
@@ -132,6 +134,7 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ScrollProgress />
       <Navbar />
       
       <div className="container mx-auto px-4 pt-24 pb-16">
@@ -207,6 +210,8 @@ const Gallery = () => {
           </div>
         )}
       </div>
+
+      <Footer />
     </div>
   );
 };

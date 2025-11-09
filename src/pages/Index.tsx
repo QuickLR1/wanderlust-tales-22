@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Search, TrendingUp, Globe, Camera } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import DestinationCard from '@/components/DestinationCard';
+import Footer from '@/components/Footer';
+import ScrollProgress from '@/components/ScrollProgress';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-travel.jpg';
@@ -54,6 +56,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ScrollProgress />
       <Navbar />
       
       {/* Hero Section */}
@@ -172,6 +175,8 @@ const Index = () => {
           </Link>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
