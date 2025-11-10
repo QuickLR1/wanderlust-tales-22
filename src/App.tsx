@@ -9,6 +9,10 @@ import Index from "./pages/Index";
 import Gallery from "./pages/Gallery";
 import Auth from "./pages/Auth";
 import Profile from "./pages/Profile";
+import America from "./pages/America";
+import Europe from "./pages/Europe";
+import Asia from "./pages/Asia";
+import ContactUs from "./pages/ContactUs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +28,10 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/gallery" element={<Gallery />} />
+              <Route path="/america" element={<America />} />
+              <Route path="/europe" element={<Europe />} />
+              <Route path="/asia" element={<Asia />} />
+              <Route path="/contact" element={<ContactUs />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/profile" element={<Profile />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
