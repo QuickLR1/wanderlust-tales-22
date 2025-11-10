@@ -176,6 +176,15 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Credits Section */}
+      <section className="py-8 px-4 border-t border-border">
+        <div className="container mx-auto text-center">
+          <p className="text-sm text-muted-foreground">
+            Made with ❤️ by <span className="font-semibold text-foreground">Isain Bexultan</span> and <span className="font-semibold text-foreground">Murat Tamerlan</span>
+          </p>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
