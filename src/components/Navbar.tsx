@@ -29,14 +29,17 @@ const Navbar = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
+    const raw = searchQuery.trim();
+    if (raw) {
+      const query = raw.toLowerCase();
       if (query.includes('america')) navigate('/america');
       else if (query.includes('europe')) navigate('/europe');
       else if (query.includes('asia')) navigate('/asia');
       else if (query.includes('gallery')) navigate('/gallery');
       else if (query.includes('contact')) navigate('/contact');
+      else if (query.includes('home')) navigate('/');
       setShowSearch(false);
+      setIsOpen(false);
       setSearchQuery('');
     }
   };
@@ -77,6 +80,15 @@ const Navbar = () => {
                   className="w-48 mr-2"
                   autoFocus
                 />
+                <Button
+                  type="submit"
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full mr-1"
+                  aria-label="Run search"
+                >
+                  <Search className="h-5 w-5" />
+                </Button>
                 <Button
                   type="button"
                   variant="ghost"
@@ -149,7 +161,18 @@ const Navbar = () => {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <nav className="flex flex-col space-y-4 mt-8">
+                <form onSubmit={handleSearch} className="flex items-center gap-2 mt-4">
+                  <Input
+                    type="text"
+                    placeholder="Search destinations..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  <Button type="submit" variant="default" size="icon" className="rounded-full" aria-label="Search">
+                    <Search className="h-5 w-5" />
+                  </Button>
+                </form>
+                <nav className="flex flex-col space-y-4 mt-6">
                   {navigationLinks.map((link) => (
                     <Link
                       key={link.path}
