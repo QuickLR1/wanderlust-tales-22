@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, TrendingUp, Globe, Camera } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import DestinationCard from '@/components/DestinationCard';
@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/hero-travel.jpg';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [destinations, setDestinations] = useState<any[]>([]);
 
@@ -49,9 +50,12 @@ const Index = () => {
   }, []);
 
   const handleSearch = () => {
-    if (searchQuery.trim()) {
-      localStorage.setItem('lastSearch', searchQuery);
-    }
+    const raw = searchQuery.trim();
+    if (!raw) return;
+    localStorage.setItem('gallerySearch', raw);
+    localStorage.setItem('galleryCategory', 'all');
+    localStorage.setItem('lastSearch', raw);
+    navigate('/gallery');
   };
 
   return (
