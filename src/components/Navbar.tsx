@@ -1,16 +1,20 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Moon, Sun, Compass, User, LogOut, Menu, X } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Moon, Sun, Compass, User, LogOut, Menu, Search } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
+import { Input } from './ui/input';
 import { useState } from 'react';
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
   const { isAuthenticated, user, signOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -22,6 +26,20 @@ const Navbar = () => {
     { path: '/asia', label: 'Asia' },
     { path: '/contact', label: 'Contact Us' },
   ];
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      if (query.includes('america')) navigate('/america');
+      else if (query.includes('europe')) navigate('/europe');
+      else if (query.includes('asia')) navigate('/asia');
+      else if (query.includes('gallery')) navigate('/gallery');
+      else if (query.includes('contact')) navigate('/contact');
+      setShowSearch(false);
+      setSearchQuery('');
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
@@ -49,6 +67,41 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center space-x-2 sm:space-x-4">
+            {showSearch ? (
+              <form onSubmit={handleSearch} className="hidden md:flex items-center">
+                <Input
+                  type="text"
+                  placeholder="Search destinations..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-48 mr-2"
+                  autoFocus
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => {
+                    setShowSearch(false);
+                    setSearchQuery('');
+                  }}
+                  className="rounded-full"
+                >
+                  ×
+                </Button>
+              </form>
+            ) : (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowSearch(true)}
+                className="rounded-full hidden md:flex"
+                aria-label="Search"
+              >
+                <Search className="h-5 w-5" />
+              </Button>
+            )}
+            
             <Button
               variant="ghost"
               size="icon"
