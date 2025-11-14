@@ -50,7 +50,7 @@ const Auth = () => {
           <Link to="/" className="inline-flex items-center space-x-2 group mb-6">
             <Compass className="h-10 w-10 text-primary transition-transform group-hover:rotate-12" />
             <span className="text-3xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-              Wanderlust
+              Isain
             </span>
           </Link>
         </div>
